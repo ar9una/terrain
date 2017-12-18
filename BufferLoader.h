@@ -5,14 +5,14 @@ class BufferLoader
 {
 
 public:
- RawModel* loadToBuffer(std::vector<float> positions, std::vector<int> indices) //, std::vector<float> uv, std::vector<float> normals, std::vector<int> indices)
+ RawModel loadToBuffer(std::vector<float> positions, std::vector<int> indices,std::vector<float> uv) //, std::vector<float> uv, std::vector<float> normals, std::vector<int> indices)
 	{
 		unsigned int vaoID = createVAO();
 		storeToVBO(positions, 3, 0);
-		/*storeToVBO(uv, 2, 1);
-		storeToVBO(normals, 3, 2);*/
+		storeToVBO(uv, 2, 1);
+		/*storeToVBO(normals, 3, 2);*/
 		storeElementsToVBO(indices);
-		return new RawModel(vaoID, indices.size()*6);
+		return RawModel(vaoID, indices.size()*6);
 	}
 
 private:
@@ -97,6 +97,10 @@ public:
 		SOIL_free_image_data(image);
 		glBindTexture(GL_TEXTURE_2D, 0);
 		return textureID;
+	}
+	void cleanUP()
+	{
+	//	glDeleteTextures(0,tex)
 	}
 
 };

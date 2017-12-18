@@ -6,6 +6,10 @@ private:
 	int vertexCount;
 
 public:
+	RawModel()
+	{
+
+	}
 	RawModel(int vaoID, int vertexCount)
 	{
 		this->vaoId = vaoID;
